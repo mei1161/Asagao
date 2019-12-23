@@ -1,0 +1,40 @@
+%title 会員の新規登録
+
+%h1 会員の新規登録
+
+
+= form_with scope: @member, html: { multipart: true } do |f|
+  %table
+    %tr
+      %th
+        = f.label :number
+      %td
+        = f.text_field :number, size: 8
+    %tr
+      %th
+        = f.label :name
+      %td
+        = f.text_field :name
+    %tr
+      %th
+        = Member.human_attribute_name(:gender)
+      %td
+        = f.radio_button :gender, 0
+        = f.label :gender_0
+        = f.radio_button :gender, 1
+        = f.label :gender_1
+    %tr
+      %th
+        = f.label :birthday, for: "member_birthday_1i"
+      %td
+        = f.date_select :birthday,
+            start_year: 1940, end_year: Time.now.year,
+            use_month_numbers: true
+    %tr
+      %th
+        = f.label :email
+      %td
+        = f.text_field :email
+        
+
+
